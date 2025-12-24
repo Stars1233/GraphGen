@@ -76,7 +76,7 @@ class EntiGraph:
     max_concurrent: int = 1000
 
     def __post_init__(self):
-        self.tokenizer = Tokenizer()
+        self.tokenizer = Tokenizer(model_name=os.getenv("TOKENIZER_MODEL"))
 
         # Initialize specialized clients for different tasks to handle different system prompts and modes
         self.client_entities = OpenAIClient(
