@@ -256,16 +256,16 @@ GraphGen 首先根据源文本构建细粒度的知识图谱，然后利用期�
       # TRAINEE_MODEL=Qwen/Qwen2.5-0.5B-Instruct
       # TRAINEE_NUM_GPUS=1
      ```
-2. （可选）如需修改默认生成配置，可编辑 `graphgen/configs/` 文件夹中的 YAML 文件.
+2. （可选）如需修改默认生成配置，可编辑 `config.yaml` 文件。
 
    例如：
 
     ```yaml
       # examples/generate/generate_aggregated_qa/aggregated_config.yaml
       global_params:
-      working_dir: cache
-      graph_backend: kuzu # graph database backend, support: kuzu, networkx
-      kv_backend: rocksdb # key-value store backend, support: rocksdb, json_kv
+        working_dir: cache
+        graph_backend: kuzu # graph database backend, support: kuzu, networkx
+        kv_backend: rocksdb # key-value store backend, support: rocksdb, json_kv
    
       nodes:
         - id: read_files # id is unique in the pipeline, and can be referenced by other steps
