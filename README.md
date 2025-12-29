@@ -266,9 +266,9 @@ For any questions, please check [FAQ](https://github.com/open-sciencelab/GraphGe
     ```yaml
       # examples/generate/generate_aggregated_qa/aggregated_config.yaml
       global_params:
-      working_dir: cache
-      graph_backend: kuzu # graph database backend, support: kuzu, networkx
-      kv_backend: rocksdb # key-value store backend, support: rocksdb, json_kv
+        working_dir: cache
+        graph_backend: kuzu # graph database backend, support: kuzu, networkx
+        kv_backend: rocksdb # key-value store backend, support: rocksdb, json_kv
    
       nodes:
         - id: read_files # id is unique in the pipeline, and can be referenced by other steps
