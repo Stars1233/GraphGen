@@ -6,12 +6,15 @@ from typing import Any, Dict
 
 import ray
 import yaml
+from dotenv import load_dotenv
 from ray.data.block import Block
 from ray.data.datasource.filename_provider import FilenameProvider
 
 from graphgen.engine import Engine
 from graphgen.operators import operators
 from graphgen.utils import CURRENT_LOGGER_VAR, logger, set_logger
+
+load_dotenv()
 
 sys_path = os.path.abspath(os.path.dirname(__file__))
 
@@ -91,10 +94,11 @@ def main():
     results = engine.execute(ds)
 
     for node_id, dataset in results.items():
-        output_path = os.path.join(output_path, f"{node_id}")
-        os.makedirs(output_path, exist_ok=True)
+        logger.info("Saving results for node %s", node_id)
+        node_output_path = os.path.join(output_path, f"{node_id}")
+        os.makedirs(node_output_path, exist_ok=True)
         dataset.write_json(
-            output_path,
+            node_output_path,
             filename_provider=NodeFilenameProvider(node_id),
             pandas_json_args_fn=lambda: {
                 "force_ascii": False,
@@ -102,7 +106,7 @@ def main():
                 "lines": True,
             },
         )
-        logger.info("Node %s results saved to %s", node_id, output_path)
+        logger.info("Node %s results saved to %s", node_id, node_output_path)
 
     save_config(os.path.join(output_path, "config.yaml"), config)
     logger.info("GraphGen completed successfully. Data saved to %s", output_path)

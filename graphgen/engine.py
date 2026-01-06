@@ -7,14 +7,11 @@ from typing import Any, Callable, Dict, List, Set
 
 import ray
 import ray.data
-from dotenv import load_dotenv
 from ray.data import DataContext
 
 from graphgen.bases import Config, Node
 from graphgen.common import init_llm, init_storage
 from graphgen.utils import logger
-
-load_dotenv()
 
 
 class Engine:
@@ -271,6 +268,8 @@ class Engine:
 
         for node in sorted_nodes:
             self._execute_node(node, initial_ds)
+            if getattr(node, "save_output", False):
+                self.datasets[node.id] = self.datasets[node.id].materialize()
 
         output_nodes = [n for n in sorted_nodes if getattr(n, "save_output", False)]
         return {node.id: self.datasets[node.id] for node in output_nodes}
