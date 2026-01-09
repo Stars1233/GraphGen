@@ -1,0 +1,21 @@
+core:
+  - graphgen/**/*
+
+examples:
+  - examples/**/*
+
+baselines:
+  - baselines/**/*
+
+documentation:
+  - "**/*.md"
+
+workflows:
+  - .github/workflows/*.yml
+  - .github/workflows/*.yaml
+
+config:
+  - .github/pr-labeler.yml
+  - .github/issue-labeler.yml
+  - .pre-commit-config.yaml
+  - .pylintrc
