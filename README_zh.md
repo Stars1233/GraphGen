@@ -62,14 +62,16 @@ GraphGen 首先根据源文本构建细粒度的知识图谱，然后利用期�
 在数据生成后，您可以使用[LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) 和 [xtuner](https://github.com/InternLM/xtuner)对大语言模型进行微调。
 
 ## 📌 最新更新
+- **2026.01.15**： 支持合成单选题、多选题和填空题型数据，适用于教育和评测场景。
 - **2025.12.26**: 新增知识图谱评估指标，包括准确度评估（实体/关系抽取质量）、一致性评估（冲突检测）和结构鲁棒性评估（噪声比、连通性、度分布）。
 - **2025.12.16**:新增 [rocksdb](https://github.com/facebook/rocksdb) 作为键值存储后端, [kuzudb](https://github.com/kuzudb/kuzu) 作为图数据库后端的支持。
-- **2025.12.16**:新增 [vllm](https://github.com/vllm-project/vllm) 作为本地推理后端的支持。
-- **2025.12.16**:使用 [ray](https://github.com/ray-project/ray) 重构了数据生成 pipeline，提升了分布式执行和资源管理的效率。
+
 
 <details>
 <summary>历史更新</summary>
 
+- **2025.12.16**:新增 [vllm](https://github.com/vllm-project/vllm) 作为本地推理后端的支持。
+- **2025.12.16**:使用 [ray](https://github.com/ray-project/ray) 重构了数据生成 pipeline，提升了分布式执行和资源管理的效率。
 - **2025.12.1**：新增对 [NCBI](https://www.ncbi.nlm.nih.gov/) 和 [RNAcentral](https://rnacentral.org/) 数据库的检索支持，现在可以从这些生物信息学数据库中提取DNA和RNA数据。
 - **2025.10.30**：我们支持多种新的 LLM 客户端和推理后端，包括 [Ollama_client]([Ollama_client](https://github.com/open-sciencelab/GraphGen/blob/main/graphgen/models/llm/api/ollama_client.py), [http_client](https://github.com/open-sciencelab/GraphGen/blob/main/graphgen/models/llm/api/http_client.py), [HuggingFace Transformers](https://github.com/open-sciencelab/GraphGen/blob/main/graphgen/models/llm/local/hf_wrapper.py) 和 [SGLang](https://github.com/open-sciencelab/GraphGen/blob/main/graphgen/models/llm/local/sglang_wrapper.py)。
 - **2025.10.23**：我们现在支持视觉问答（VQA）数据生成。运行脚本：`bash scripts/generate/generate_vqa.sh`。
@@ -283,13 +285,16 @@ GraphGen 首先根据源文本构建细粒度的知识图谱，然后利用期�
 
    选择所需格式并运行对应脚本：
    
-   | 格式           | 运行脚本                                                                   | 说明              |
-   | ------------ | ---------------------------------------------------------------------- | --------------- |
-   | `cot`        | `bash examples/generate/generate_cot_qa/generate_cot.sh`               | 思维链问答对          |
-   | `atomic`     | `bash examples/generate/generate_atomic_qa/generate_atomic.sh`         | 覆盖基础知识的原子问答对    |
-   | `aggregated` | `bash examples/generate/generate_aggregated_qa/generate_aggregated.sh` | 整合复杂知识的聚合问答对    |
-   | `multi-hop`  | `bash examples/generate/generate_multi_hop_qa/generate_multi_hop.sh`   | 多跳推理问答对         |
-   | `vqa`        | `bash examples/generate/generate_vqa/generate_vqa.sh`                  | 视觉问答对，结合视觉和文本理解 |
+   | 格式              | 运行脚本                                                                         | 说明              |
+   |-----------------|------------------------------------------------------------------------------|-----------------|
+   | `cot`           | `bash examples/generate/generate_cot_qa/generate_cot.sh`                     | 思维链问答对          |
+   | `atomic`        | `bash examples/generate/generate_atomic_qa/generate_atomic.sh`               | 覆盖基础知识的原子问答对    |
+   | `aggregated`    | `bash examples/generate/generate_aggregated_qa/generate_aggregated.sh`       | 整合复杂知识的聚合问答对    |
+   | `multi_hop`     | `bash examples/generate/generate_multi_hop_qa/generate_multi_hop.sh`         | 多跳推理问答对         |
+   | `vqa`           | `bash examples/generate/generate_vqa/generate_vqa.sh`                        | 视觉问答对，结合视觉和文本理解 |
+   | `multi_choice`  | `bash examples/generate/generate_multi_choice_qa/generate_multi_choice.sh`   | 单项选择题问答对        |
+   | `multi_answer`  | `bash examples/generate/generate_multi_answer_qa/generate_multi_answer.sh`   | 多项选择题问答对        |
+   | `fill_in_blank` | `bash examples/generate/generate_fill_in_blank_qa/generate_fill_in_blank.sh` | 填空题问答对          |
    
 
 

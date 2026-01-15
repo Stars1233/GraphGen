@@ -61,15 +61,15 @@ Furthermore, GraphGen incorporates multi-hop neighborhood sampling to capture co
 After data generation, you can use [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) and [xtuner](https://github.com/InternLM/xtuner) to finetune your LLMs.
 
 ## 📌 Latest Updates
-
+- **2026.01.15**: Added support for synthesizing single-choice, multiple-choice, and fill-in-the-blank question types, suitable for educational and evaluation scenarios.
 - **2025.12.26**: Added comprehensive knowledge graph evaluation metrics including accuracy assessment (entity/relation extraction quality), consistency assessment (conflict detection), and structural robustness assessment (noise ratio, connectivity, degree distribution).
 - **2025.12.16**: Added [rocksdb](https://github.com/facebook/rocksdb) for key-value storage backend and [kuzudb](https://github.com/kuzudb/kuzu) for graph database backend support.
-- **2025.12.16**: Added [vllm](https://github.com/vllm-project/vllm) for local inference backend support.
-- **2025.12.16**: Refactored the data generation pipeline using [ray](https://github.com/ray-project/ray) to improve the efficiency of distributed execution and resource management.
 
 <details>
 <summary>History</summary>
 
+- **2025.12.16**: Added [vllm](https://github.com/vllm-project/vllm) for local inference backend support.
+- **2025.12.16**: Refactored the data generation pipeline using [ray](https://github.com/ray-project/ray) to improve the efficiency of distributed execution and resource management.
 - **2025.12.1**: Added search support for [NCBI](https://www.ncbi.nlm.nih.gov/) and [RNAcentral](https://rnacentral.org/) databases, enabling extraction of DNA and RNA data from these bioinformatics databases.
 - **2025.10.30**: We support several new LLM clients and inference backends including [Ollama_client](https://github.com/open-sciencelab/GraphGen/blob/main/graphgen/models/llm/api/ollama_client.py), [http_client](https://github.com/open-sciencelab/GraphGen/blob/main/graphgen/models/llm/api/http_client.py), [HuggingFace Transformers](https://github.com/open-sciencelab/GraphGen/blob/main/graphgen/models/llm/local/hf_wrapper.py) and [SGLang](https://github.com/open-sciencelab/GraphGen/blob/main/graphgen/models/llm/local/sglang_wrapper.py).
 - **2025.10.23**: We support VQA(Visual Question Answering) data generation now. Run script: `bash scripts/generate/generate_vqa.sh`.
@@ -286,14 +286,17 @@ For any questions, please check [FAQ](https://github.com/open-sciencelab/GraphGe
 
    Pick the desired format and run the matching script:
       
-   | Format       | Script to run                                                          | Notes                                                                      |
-   | ------------ | ---------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-   | `cot`        | `bash examples/generate/generate_cot_qa/generate_cot.sh`               | Chain-of-Thought Q\&A pairs                                                |
-   | `atomic`     | `bash examples/generate/generate_atomic_qa/generate_atomic.sh`         | Atomic Q\&A pairs covering basic knowledge                                 |
-   | `aggregated` | `bash examples/generate/generate_aggregated_qa/generate_aggregated.sh` | Aggregated Q\&A pairs incorporating complex, integrated knowledge          |
-   | `multi-hop`  | `examples/generate/generate_multi_hop_qa/generate_multi_hop.sh`        | Multi-hop reasoning Q\&A pairs                                             |
-   | `vqa`        | `bash examples/generate/generate_vqa/generate_vqa.sh`                  | Visual Question Answering pairs combining visual and textual understanding |
-
+   | Format          | Script to run                                                                | Notes                                                                      |
+   |-----------------|------------------------------------------------------------------------------|----------------------------------------------------------------------------|
+   | `cot`           | `bash examples/generate/generate_cot_qa/generate_cot.sh`                     | Chain-of-Thought Q\&A pairs                                                |
+   | `atomic`        | `bash examples/generate/generate_atomic_qa/generate_atomic.sh`               | Atomic Q\&A pairs covering basic knowledge                                 |
+   | `aggregated`    | `bash examples/generate/generate_aggregated_qa/generate_aggregated.sh`       | Aggregated Q\&A pairs incorporating complex, integrated knowledge          |
+   | `multi-hop`     | `examples/generate/generate_multi_hop_qa/generate_multi_hop.sh`              | Multi-hop reasoning Q\&A pairs                                             |
+   | `vqa`           | `bash examples/generate/generate_vqa/generate_vqa.sh`                        | Visual Question Answering pairs combining visual and textual understanding |
+   | `multi_choice`  | `bash examples/generate/generate_multi_choice_qa/generate_multi_choice.sh`   | Multiple-choice question-answer pairs                                      |
+   | `multi_answer`  | `bash examples/generate/generate_multi_answer_qa/generate_multi_answer.sh`   | Multiple-answer question-answer pairs                                      |
+   | `fill_in_blank` | `bash examples/generate/generate_fill_in_blank_qa/generate_fill_in_blank.sh` | Fill-in-the-blank question-answer pairs                                    |
+   
 
 4. Get the generated data
    ```bash
