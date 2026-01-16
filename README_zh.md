@@ -62,7 +62,7 @@ GraphGen 首先根据源文本构建细粒度的知识图谱，然后利用期�
 在数据生成后，您可以使用[LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) 和 [xtuner](https://github.com/InternLM/xtuner)对大语言模型进行微调。
 
 ## 📌 最新功能
-- **2026.01.15**：合成垂域评测数据（单选题、多选题和填空题型）🌟🌟
+- **2026.01.15**：合成垂域评测数据（单选题、多选题、填空题和判断题型）🌟🌟
 - **2025.12.26**：引入知识图谱评估指标，包括准确度评估（实体/关系抽取质量）、一致性评估（冲突检测）和结构鲁棒性评估（噪声比、连通性、度分布）
 - **2025.12.16**：支持 [rocksdb](https://github.com/facebook/rocksdb) 作为键值存储后端, [kuzudb](https://github.com/kuzudb/kuzu) 作为图数据库后端
 
@@ -289,7 +289,7 @@ GraphGen 首先根据源文本构建细粒度的知识图谱，然后利用期�
    | `multi_choice`  | `bash examples/generate/generate_multi_choice_qa/generate_multi_choice.sh`   | 单项选择题问答对        |
    | `multi_answer`  | `bash examples/generate/generate_multi_answer_qa/generate_multi_answer.sh`   | 多项选择题问答对        |
    | `fill_in_blank` | `bash examples/generate/generate_fill_in_blank_qa/generate_fill_in_blank.sh` | 填空题问答对          |
-   
+ | | `true_false`    | `bash examples/generate/generate_true_false_qa/generate_true_false.sh`       | 判断题问答对          |
 
 
 4. 查看生成结果

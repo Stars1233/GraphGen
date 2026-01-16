@@ -61,7 +61,7 @@ Furthermore, GraphGen incorporates multi-hop neighborhood sampling to capture co
 After data generation, you can use [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) and [xtuner](https://github.com/InternLM/xtuner) to finetune your LLMs.
 
 ## 📌 Latest Updates
-- **2026.01.15**: **LLM benchmark synthesis** now supports single/multiple-choice & fill-in-the-blank—ideal for education 🌟🌟
+- **2026.01.15**: **LLM benchmark synthesis** now supports single/multiple-choice & fill-in-the-blank & true-or-false—ideal for education 🌟🌟
 - **2025.12.26**: Knowledge graph evaluation metrics about accuracy (entity/relation), consistency (conflict detection), structural robustness (noise, connectivity, degree distribution)
 - **2025.12.16**: Added [rocksdb](https://github.com/facebook/rocksdb) for key-value storage backend and [kuzudb](https://github.com/kuzudb/kuzu) for graph database backend support.
 
@@ -291,7 +291,7 @@ For any questions, please check [FAQ](https://github.com/open-sciencelab/GraphGe
    | `multi_choice`  | `bash examples/generate/generate_multi_choice_qa/generate_multi_choice.sh`   | Multiple-choice question-answer pairs                                      |
    | `multi_answer`  | `bash examples/generate/generate_multi_answer_qa/generate_multi_answer.sh`   | Multiple-answer question-answer pairs                                      |
    | `fill_in_blank` | `bash examples/generate/generate_fill_in_blank_qa/generate_fill_in_blank.sh` | Fill-in-the-blank question-answer pairs                                    |
-   
+ | | `true_false`    | `bash examples/generate/generate_true_false_qa/generate_true_false.sh`       | True-or-false question-answer pairs                                        |
 
 4. Get the generated data
    ```bash
