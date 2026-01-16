@@ -10,6 +10,12 @@ baselines:
 documentation:
   - "**/*.md"
 
+webui:
+  - webui/**/*
+
+tests:
+  - tests/**/*
+
 workflows:
   - .github/workflows/*.yml
   - .github/workflows/*.yaml
