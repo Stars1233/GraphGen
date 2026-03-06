@@ -292,7 +292,7 @@ For any questions, please check [FAQ](https://github.com/open-sciencelab/GraphGe
    | `multi_choice`  | `bash examples/generate/generate_multi_choice_qa/generate_multi_choice.sh`   | Multiple-choice question-answer pairs                                      |
    | `multi_answer`  | `bash examples/generate/generate_multi_answer_qa/generate_multi_answer.sh`   | Multiple-answer question-answer pairs                                      |
    | `fill_in_blank` | `bash examples/generate/generate_fill_in_blank_qa/generate_fill_in_blank.sh` | Fill-in-the-blank question-answer pairs                                    |
- | | `true_false`    | `bash examples/generate/generate_true_false_qa/generate_true_false.sh`       | True-or-false question-answer pairs                                        |
+   | `true_false`    | `bash examples/generate/generate_true_false_qa/generate_true_false.sh`       | True-or-false question-answer pairs                                        |
 
 4. Get the generated data
    ```bash
