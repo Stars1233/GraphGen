@@ -45,16 +45,6 @@ GraphGen: Enhancing Supervised Fine-Tuning for LLMs with Knowledge-Driven Synthe
 
 GraphGen is a framework for synthetic data generation guided by knowledge graphs. Please check the [**paper**](https://arxiv.org/abs/2505.20416) and [best practice](https://github.com/open-sciencelab/GraphGen/issues/17).
 
-Here is post-training result which **over 50% SFT data** comes from GraphGen and our data clean pipeline.
-
-|  Domain   |                          Dataset                          |   Ours   | Qwen2.5-7B-Instruct (baseline) |
-|:---------:|:---------------------------------------------------------:|:--------:|:------------------------------:|
-|   Plant   | [SeedBench](https://github.com/open-sciencelab/SeedBench) | **65.9** |              51.5              |
-|  Common   |                           CMMLU                           |   73.6   |            **75.8**            |
-| Knowledge |                       GPQA-Diamond                        | **40.0** |              33.3              |
-|   Math    |                          AIME24                           | **20.6** |              16.7              |
-|           |                          AIME25                           | **22.7** |              7.2               |
-
 It begins by constructing a fine-grained knowledge graph from the source text，then identifies knowledge gaps in LLMs using the expected calibration error metric, prioritizing the generation of QA pairs that target high-value, long-tail knowledge.
 Furthermore, GraphGen incorporates multi-hop neighborhood sampling to capture complex relational information and employs style-controlled generation to diversify the resulting QA data.
 
@@ -81,6 +71,34 @@ After data generation, you can use [LLaMA-Factory](https://github.com/hiyouga/LL
 - **2025.04.21**: We have released the initial version of GraphGen.
 
 </details>
+
+## Effectiveness of GraphGen
+### Pretrain
+
+Inspired by ByteDance Seed's [Reformulation for Pretraining Data Augmentation](https://arxiv.org/abs/2507.15752) (MGA framework) and Kimi-K2's [Improving Token Utility with Rephrasing](https://arxiv.org/pdf/2507.20534), GraphGen added a **rephrase pipeline** — using LLM-driven reformulation to generate diverse variants of the same corpus instead of redundant repetition.
+
+**Setup:** Qwen3-0.6B trained from scratch on [SlimPajama-6B](https://huggingface.co/datasets/DKYoon/SlimPajama-6B).
+
+| Method | ARC-E | ARC-C | HellaSwag | GSM8K | TruthfulQA-MC1 | TruthfulQA-MC2 | **Average** |
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| SlimPajama-6B (baseline) | 25.55 | 21.08 | 24.48 | 0.08 | 24.36 | 49.90 | 24.24 |
+| Executive-Summary Rephrase | 26.43 | **22.70** | **24.75** | **1.36** | **26.19** | **51.90** | **25.56**(1.32↑) |
+| Cross-Domain Rephrase | **28.79** | 20.22 | 24.46 | 0.00 | 24.97 | 52.41 | 25.14(0.9↑) |
+
+Both rephrase strategies lift the average by ~1 point over the baseline with **zero additional data** — all gains come from how the same knowledge is expressed.
+
+
+### SFT
+Here is post-training result which **over 50% SFT data** comes from GraphGen and our data clean pipeline.
+
+|  Domain   |                          Dataset                          |   Ours   | Qwen2.5-7B-Instruct (baseline) |
+|:---------:|:---------------------------------------------------------:|:--------:|:------------------------------:|
+|   Plant   | [SeedBench](https://github.com/open-sciencelab/SeedBench) | **65.9** |              51.5              |
+|  Common   |                           CMMLU                           |   73.6   |            **75.8**            |
+| Knowledge |                       GPQA-Diamond                        | **40.0** |              33.3              |
+|   Math    |                          AIME24                           | **20.6** |              16.7              |
+|           |                          AIME25                           | **22.7** |              7.2               |
+
 
 
 ## ⚙️ Support List
