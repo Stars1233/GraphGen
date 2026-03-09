@@ -75,7 +75,7 @@ After data generation, you can use [LLaMA-Factory](https://github.com/hiyouga/LL
 ## Effectiveness of GraphGen
 ### Pretrain
 
-Inspired by ByteDance Seed's [Reformulation for Pretraining Data Augmentation](https://arxiv.org/abs/2507.15752) (MGA framework) and Kimi-K2's [Improving Token Utility with Rephrasing](https://arxiv.org/pdf/2507.20534), GraphGen added a **rephrase pipeline** — using LLM-driven reformulation to generate diverse variants of the same corpus instead of redundant repetition.
+Inspired by Kimi-K2's [technical report](https://arxiv.org/pdf/2507.20534) (Improving Token Utility with Rephrasing)  and ByteDance Seed's [Reformulation for Pretraining Data Augmentation](https://arxiv.org/abs/2507.15752) (MGA framework), GraphGen added a **rephrase pipeline** — using LLM-driven reformulation to generate diverse variants of the same corpus instead of redundant repetition.
 
 **Setup:** Qwen3-0.6B trained from scratch on [SlimPajama-6B](https://huggingface.co/datasets/DKYoon/SlimPajama-6B).
 
