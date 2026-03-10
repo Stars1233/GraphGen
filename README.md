@@ -81,11 +81,11 @@ Inspired by Kimi-K2's [technical report](https://arxiv.org/pdf/2507.20534) (Impr
 
 | Method | ARC-E | ARC-C | HellaSwag | GSM8K | TruthfulQA-MC1 | TruthfulQA-MC2 | **Average** |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| SlimPajama-6B (baseline) | 25.55 | 21.08 | 24.48 | 0.08 | 24.36 | 49.90 | 24.24 |
-| Executive-Summary Rephrase | 26.43 | **22.70** | **24.75** | **1.36** | **26.19** | **51.90** | **25.56**(1.32↑) |
-| Cross-Domain Rephrase | **28.79** | 20.22 | 24.46 | 0.00 | 24.97 | 52.41 | 25.14(0.9↑) |
+| SlimPajama-6B trained for 2 epochs | 25.55 | 21.08 | 24.48 | 0.08 | 24.36 | 49.90 | 24.24 |
+| SlimPajama-6B + Executive-Summary Rephrase trained for 1 epoch | 26.43 | **22.70** | **24.75** | **1.36** | **26.19** | **51.90** | **25.56**(↑1.32) |
+| SlimPajama-6B + Cross-Domain Rephrase trained for 1 epoch | **28.79** | 20.22 | 24.46 | 0.00 | 24.97 | 52.41 | 25.14(↑0.9) |
 
-Both rephrase strategies lift the average by ~1 point over the baseline with **zero additional data** — all gains come from how the same knowledge is expressed.
+Both rephrase methods lift the average by ~1 point over the baseline with **zero additional data** — all gains come from how the same knowledge is expressed.
 
 
 ### SFT
