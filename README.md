@@ -101,7 +101,7 @@ Here is post-training result which **over 50% SFT data** comes from GraphGen and
 |           | [AIME25](https://artofproblemsolving.com/wiki/index.php/2025_AIME_I) | **22.7** |              7.2               |
 
 ### RLVR
-Reinforcement Learning with Verifiable Rewards (RLVR) has demonstrated promising potential to enhance the reasoning capabilities of large language models (LLMs). However, its applications on knowledge-intensive domains have not been effectively explored due to the scarcity of high-quality verifiable data. By leveraging **GraphGen** for automated verifiable data synthesis, we extend RLVR to these broader domains. We applied reinforcement learning directly to the Qwen2.5-7B base model using the synthesized data without any prior SFT. Here are the results.
+Reinforcement Learning with Verifiable Rewards (RLVR) has demonstrated promising potential to enhance the reasoning capabilities of large language models (LLMs). However, its applications on knowledge-intensive domains have not been effectively explored due to the scarcity of high-quality verifiable data. By leveraging **GraphGen** for automated verifiable data synthesis, we extend RLVR to these broader domains. We applied reinforcement learning directly to the Qwen2.5-7B base model using the synthesized data without any prior SFT ([Code](https://github.com/superfarther/K2V)). Here are the results. 
 |  Domain   |                          Dataset                          |   Ours   | Qwen2.5-7B-Instruct (baseline) |
 |:---------:|:---------------------------------------------------------:|:--------:|:------------------------------:|
 |   Plant   | [SeedBench](https://github.com/open-sciencelab/SeedBench) | **66.8** |              51.5              |
