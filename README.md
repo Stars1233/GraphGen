@@ -51,6 +51,7 @@ Furthermore, GraphGen incorporates multi-hop neighborhood sampling to capture co
 After data generation, you can use [LLaMA-Factory](https://github.com/hiyouga/LLaMA-Factory) and [xtuner](https://github.com/InternLM/xtuner) to finetune your LLMs.
 
 ## 📌 Latest Updates
+- 🎉 **2026.04.13**: The paper based on GraphGen, *Knowledge-to-Verification: Exploring RLVR for LLMs in Knowledge-Intensive Domains*, has been accepted to the **ACL 2026** Main Conference! Congratulations!
 - **2026.02.04**: We support HuggingFace Datasets as input data source for data generation now.
 - **2026.01.15**: **LLM benchmark synthesis** now supports single/multiple-choice & fill-in-the-blank & true-or-false—ideal for education 🌟🌟
 - **2025.12.26**: Knowledge graph evaluation metrics about accuracy (entity/relation), consistency (conflict detection), structural robustness (noise, connectivity, degree distribution)
@@ -79,7 +80,7 @@ Inspired by Kimi-K2's [technical report](https://arxiv.org/pdf/2507.20534) (Impr
 
 **Setup:** Qwen3-0.6B trained from scratch on [SlimPajama-6B](https://huggingface.co/datasets/DKYoon/SlimPajama-6B).
 
-| Method | ARC-E | ARC-C | HellaSwag | GSM8K | TruthfulQA-MC1 | TruthfulQA-MC2 | **Average** |
+| Method | [ARC-E](https://allenai.org/data/arc) | [ARC-C](https://allenai.org/data/arc) | [HellaSwag](https://rowanzellers.com/hellaswag/) | [GSM8K](https://github.com/openai/grade-school-math) | [TruthfulQA-MC1](https://github.com/sylinrl/TruthfulQA) | [TruthfulQA-MC2](https://github.com/sylinrl/TruthfulQA) | **Average** |
 |:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
 | SlimPajama-6B trained for 2 epochs | 25.55 | 21.08 | 24.48 | 0.08 | 24.36 | 49.90 | 24.24 |
 | SlimPajama-6B + Executive-Summary Rephrase trained for 1 epoch | 26.43 | **22.70** | **24.75** | **1.36** | **26.19** | 51.90 | **25.56**(↑1.32) |
@@ -94,19 +95,19 @@ Here is post-training result which **over 50% SFT data** comes from GraphGen and
 |  Domain   |                          Dataset                          |   Ours   | Qwen2.5-7B-Instruct (baseline) |
 |:---------:|:---------------------------------------------------------:|:--------:|:------------------------------:|
 |   Plant   | [SeedBench](https://github.com/open-sciencelab/SeedBench) | **65.9** |              51.5              |
-|  Common   |                           CMMLU                           |   73.6   |            **75.8**            |
-| Knowledge |                       GPQA-Diamond                        | **40.0** |              33.3              |
-|   Math    |                          AIME24                           | **20.6** |              16.7              |
-|           |                          AIME25                           | **22.7** |              7.2               |
+|  Common   |        [CMMLU](https://github.com/haonan-li/CMMLU)        |   73.6   |            **75.8**            |
+| Knowledge |      [GPQA-Diamond](https://github.com/idavidrein/gpqa)   | **40.0** |              33.3              |
+|   Math    | [AIME24](https://artofproblemsolving.com/wiki/index.php/2024_AIME_I) | **20.6** |              16.7              |
+|           | [AIME25](https://artofproblemsolving.com/wiki/index.php/2025_AIME_I) | **22.7** |              7.2               |
 
 ### RLVR
-We applied reinforcement learning directly to the Qwen2.5-7B base model without any prior SFT. Here are the results.
+Reinforcement Learning with Verifiable Rewards (RLVR) has demonstrated promising potential to enhance the reasoning capabilities of large language models (LLMs). However, its applications on knowledge-intensive domains have not been effectively explored due to the scarcity of high-quality verifiable data. By leveraging **GraphGen** for automated verifiable data synthesis, we extend RLVR to these broader domains. We applied reinforcement learning directly to the Qwen2.5-7B base model using the synthesized data without any prior SFT. Here are the results.
 |  Domain   |                          Dataset                          |   Ours   | Qwen2.5-7B-Instruct (baseline) |
 |:---------:|:---------------------------------------------------------:|:--------:|:------------------------------:|
 |   Plant   | [SeedBench](https://github.com/open-sciencelab/SeedBench) | **66.8** |              51.5              |
-|    Law    |                           LawBench                        | **55.2** |              54.76             |
-|  Medicine |                            MedQA                          | **87.1** |              80.7              |
-|  General  |                             BBH                           | **55.3** |              49.6              |
+|    Law    | [LawBench](https://github.com/open-compass/LawBench)     | **55.2** |              54.76             |
+|  Medicine | [MedQA](https://github.com/jind11/MedQA)                 | **87.1** |              80.7              |
+|  General  | [BBH](https://github.com/suzgunmirac/BIG-Bench-Hard)     | **55.3** |              49.6              |
 
 More details can be found at [`examples/generate/generate_masked_fill_in_blank_qa`](./examples/generate/generate_masked_fill_in_blank_qa).
 
